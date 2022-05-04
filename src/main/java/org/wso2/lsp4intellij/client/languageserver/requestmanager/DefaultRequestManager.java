@@ -251,7 +251,7 @@ public class DefaultRequestManager implements RequestManager {
     public void didOpen(DidOpenTextDocumentParams params) {
         if (checkStatus()) {
             try {
-                if (textDocumentOptions == null || textDocumentOptions.getOpenClose()) {
+                if (textDocumentOptions == null || textDocumentOptions.getOpenClose() == true) {
                     textDocumentService.didOpen(params);
                 }
             } catch (Exception e) {
