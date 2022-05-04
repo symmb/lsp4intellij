@@ -305,7 +305,8 @@ public class DefaultRequestManager implements RequestManager {
     public void didOpen(DidOpenTextDocumentParams params) {
         if (checkStatus()) {
             try {
-                if (textDocumentOptions == null || textDocumentOptions.getOpenClose()) {
+                Boolean openClose = textDocumentOptions.getOpenClose();
+                if (textDocumentOptions == null || (openClose != null && openClose)) {
                     textDocumentService.didOpen(params);
                 }
             } catch (Exception e) {
@@ -331,7 +332,8 @@ public class DefaultRequestManager implements RequestManager {
     public void willSave(WillSaveTextDocumentParams params) {
         if (checkStatus()) {
             try {
-                if (textDocumentOptions == null || textDocumentOptions.getWillSave()) {
+                Boolean willSave = textDocumentOptions.getWillSave();
+                if (textDocumentOptions == null || (willSave != null && willSave)) {
                     textDocumentService.willSave(params);
                 }
             } catch (Exception e) {
@@ -344,7 +346,8 @@ public class DefaultRequestManager implements RequestManager {
     public CompletableFuture<List<TextEdit>> willSaveWaitUntil(WillSaveTextDocumentParams params) {
         if (checkStatus()) {
             try {
-                return (textDocumentOptions == null || textDocumentOptions.getWillSaveWaitUntil()) ?
+                Boolean willSaveWaitUntil = textDocumentOptions.getWillSaveWaitUntil();
+                return (textDocumentOptions == null || (willSaveWaitUntil != null && willSaveWaitUntil)) ?
                         textDocumentService.willSaveWaitUntil(params) : null;
             } catch (Exception e) {
                 crashed(e);
@@ -371,7 +374,8 @@ public class DefaultRequestManager implements RequestManager {
     public void didClose(DidCloseTextDocumentParams params) {
         if (checkStatus()) {
             try {
-                if (textDocumentOptions == null || textDocumentOptions.getOpenClose()) {
+                Boolean openClose = textDocumentOptions.getOpenClose();
+                if (textDocumentOptions == null || (openClose != null && openClose)) {
                     textDocumentService.didClose(params);
                 }
             } catch (Exception e) {
